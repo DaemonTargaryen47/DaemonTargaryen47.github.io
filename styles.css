@@ -1,0 +1,652 @@
+/* ============================================================
+   PORTFOLIO STYLESHEET - DARK TECH THEME
+============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES
+============================================================ */
+:root {
+  --color-bg:         #0D1117;    /* deep dark background */
+  --color-bg-alt:     #161B22;    /* slightly lighter dark */
+  --color-bg-card:    #1C2333;    /* card background */
+  --color-text:       #E6EDF3;    /* light text */
+  --color-muted:      #7D8590;    /* muted text */
+  --color-accent:     #58A6FF;    /* electric blue */
+  --color-accent-2:   #3FB950;    /* matrix green */
+  --color-border:     #30363D;    /* subtle borders */
+  --color-dark:       #010409;    /* darkest (footer/contact) */
+  --color-glow:       rgba(88, 166, 255, 0.15);  /* blue glow */
+
+  --font-heading: 'Georgia', serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'Courier New', monospace;
+
+  --section-padding: 5rem 2rem;
+  --max-width:       860px;
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+
+/* ============================================================
+   3. NAVIGATION
+============================================================ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  transition: color 0.2s;
+  font-family: var(--font-mono);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-accent);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+
+/* ============================================================
+   4. HERO
+============================================================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 2rem 4rem;
+  background: var(--color-bg);
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated grid background */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(88, 166, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88, 166, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Blue glow orb */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#hero > * {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+  margin-bottom: 1rem;
+}
+
+.hero-eyebrow::before {
+  content: '> ';
+  color: var(--color-accent);
+}
+
+.hero-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.2;
+  color: var(--color-text);
+  margin-bottom: 1.2rem;
+}
+
+.highlight {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+  max-width: 500px;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #0D1117;
+  border: 2px solid var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--color-accent);
+  box-shadow: 0 0 16px var(--color-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+
+.btn-outline:hover {
+  background: var(--color-accent);
+  color: #0D1117;
+  box-shadow: 0 0 16px var(--color-glow);
+}
+
+
+/* ============================================================
+   5. SHARED SECTION STYLES
+============================================================ */
+section { padding: var(--section-padding); }
+
+section > *,
+section > .about-content,
+section > .skills-grid,
+section > .projects-grid,
+section > .experience-list,
+section > .certs-grid,
+section > .contact-links,
+section > .contact-sub {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: var(--color-accent);
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--color-border);
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.05em;
+}
+
+.section-title::before {
+  content: '// ';
+  color: var(--color-muted);
+  font-size: 0.9em;
+}
+
+#about        { background: var(--color-bg); }
+#skills       { background: var(--color-bg-alt); }
+#projects     { background: var(--color-bg); }
+#experience   { background: var(--color-bg-alt); }
+#certificates { background: var(--color-bg); }
+#contact      { background: var(--color-dark); }
+
+
+/* ============================================================
+   6. ABOUT
+============================================================ */
+.about-content {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.about-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 20px var(--color-glow);
+}
+
+.about-text p {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+
+/* ============================================================
+   7. SKILLS
+============================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+
+.skill-group {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.4rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.skill-group:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 16px var(--color-glow);
+}
+
+.skill-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+  margin-bottom: 0.8rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-list li {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-accent);
+}
+
+
+/* ============================================================
+   8. PROJECTS
+============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.6rem;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(88,166,255,0.12);
+  border-color: var(--color-accent);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+  background: rgba(63, 185, 80, 0.1);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.project-desc {
+  font-size: 0.86rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tools span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-muted);
+  background: var(--color-bg);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color 0.2s;
+}
+
+.project-link:hover {
+  color: var(--color-accent-2);
+  text-decoration: underline;
+}
+
+.project-github-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+  filter: invert(1);
+}
+
+
+/* ============================================================
+   9. EXPERIENCE
+============================================================ */
+.experience-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience-item:last-child { border-bottom: none; }
+
+.experience-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-accent-2);
+  padding-top: 0.2rem;
+}
+
+.experience-role {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-text);
+}
+
+.experience-company {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.experience-desc {
+  font-size: 0.86rem;
+  color: var(--color-muted);
+}
+
+
+/* ============================================================
+   10. CERTIFICATES
+============================================================ */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.cert-item {
+  padding: 1.3rem 1.5rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 6px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.cert-item:hover {
+  box-shadow: 0 0 16px var(--color-glow);
+  border-color: var(--color-accent);
+}
+
+.cert-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.cert-item a:hover .cert-name {
+  color: var(--color-accent);
+}
+
+.cert-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+
+/* ============================================================
+   11. CONTACT
+============================================================ */
+#contact .section-title {
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+.contact-sub {
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg-card);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.contact-links a:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 16px var(--color-glow);
+  transform: translateY(-3px);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+
+/* ============================================================
+   12. FOOTER
+============================================================ */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--color-dark);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+footer p::before {
+  content: '< ';
+  color: var(--color-accent);
+}
+
+footer p::after {
+  content: ' />';
+  color: var(--color-accent);
+}
+
+
+/* ============================================================
+   13. RESPONSIVE
+============================================================ */
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--color-bg);
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .about-content { flex-direction: column; }
+
+  .about-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+}
